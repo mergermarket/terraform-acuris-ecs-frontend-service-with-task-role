@@ -19,7 +19,7 @@ module "ecs_update_monitor" {
 
 module "service" {
   source = "github.com/mergermarket/tf_load_balanced_ecs_service"
-  
+
   name            = "${var.env}-${lookup(var.release, "component")}${var.name_suffix}"
   cluster         = "${var.ecs_cluster}"
   task_definition = "${module.taskdef.arn}"
@@ -60,6 +60,14 @@ module "service_container_definition" {
     var.application_environment,
     var.secrets
   )}"
+
+  labels {
+    component          = "${lookup(var.release, "component")}"
+    env                = "${var.env}"
+    team               = "${lookup(var.release, "team")}"
+    version            = "${lookup(var.release, "version")}"
+    "logentries.token" = "${var.logentries_token}"
+  }
 }
 
 resource "aws_cloudwatch_log_group" "stdout" {
