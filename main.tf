@@ -6,7 +6,7 @@ module "listener_rule_home" {
   target_group_arn = module.service.target_group_arn
 
   host_condition    = var.host_condition
-  path_conditions   = [var.path_conditions]
+  path_conditions   = var.path_conditions
   starting_priority = var.alb_listener_rule_priority
 }
 
