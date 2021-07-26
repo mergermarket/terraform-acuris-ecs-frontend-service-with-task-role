@@ -51,7 +51,7 @@ module "service_container_definition" {
   source = "mergermarket/ecs-container-definition/acuris"
 
   name           = "${var.release["component"]}${var.name_suffix}"
-  image          = var.release["image_id"]
+  image          = var.image_id
   cpu            = var.cpu
   memory         = var.memory
   container_port = var.port

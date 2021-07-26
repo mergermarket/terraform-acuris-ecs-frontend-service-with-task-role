@@ -13,6 +13,11 @@ variable "release" {
   description = "Metadata about the release"
 }
 
+variable "image_id" {
+  type        = string
+  description = "Image id of docker release"
+}
+
 variable "common_application_environment" {
   description = "Environment parameters passed to the container for all environments"
   type        = map(string)
